@@ -1,5 +1,5 @@
 const fs = require("fs");
-const db = require("../db/db");
+let db = require("../db/db");
 
 module.exports = (app) => {
     let id = "";
@@ -12,13 +12,13 @@ module.exports = (app) => {
 
     });
 
-    app.post("/api/notes", function (req, res) {
+    app.post("/api/notes", async function (req, res) {
         let newNote = req.body;
 
         if (db === "") {
             newNote.id = 1
         } else {
-            newNote.id = db.length;
+            newNote.id = db[db.length - 1].id + 1;
         }
 
         id = newNote.id;
@@ -27,11 +27,17 @@ module.exports = (app) => {
 
         let newDB = JSON.stringify(db);
 
-        fs.writeFile('db/db.json', newDB, (err) => {
+        await fs.writeFile('db/db.json', newDB, (err) => {
             if (err) throw err;
             console.log('The note has been saved!');
             res.json(newNote);
         });
+
+        console.log(newDB);
+
+        fs.readFile('db/db.json',"utf8", function(error, data){
+            db = JSON.parse(data);
+        })
         
     });
 
@@ -52,11 +58,12 @@ module.exports = (app) => {
         let updatedDb = db.filter(x => {
             return x.id != chosenID;
         })
-       //console.log(deleteNote);
+       console.log(updatedDb);
 
         fs.writeFile("db/db.json", JSON.stringify(updatedDb), (err) => {
             if (err) throw err;
             console.log('The note has been deleted!');
+            db = updatedDb;
             res.json({ok:true});
         });
 
