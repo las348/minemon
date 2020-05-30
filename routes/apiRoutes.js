@@ -44,17 +44,6 @@ module.exports = (app) => {
     app.delete("/api/notes/:id", function (req, res) {
         let chosenID = req.params.id;
 
-        // db.json is array
-        // activeNote = the note in the textarea = object
-        //  let activeNote = {};
-
-        // //assigning the id to each item in the array
-        // if (!db === undefined || !db.length == 0) {
-        //     for (let i = 0; i < db.length; i++) {
-        //         db[i].id = i;
-        //     }
-        // }
-
         let updatedDb = db.filter(x => {
             return x.id != chosenID;
         })
