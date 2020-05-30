@@ -1,7 +1,7 @@
 # Note Taker site
 
   ![AUR last modified](https://img.shields.io/aur/last-modified/google-Chrome?color=teal&style=plastic)
-  ![alt text](screencap.png)
+  ![Screen Cap](screencap.png)
  
   ## Description:
   This site can be used to write, save, and delete notes. This application uses an express backend and saves/retrieves note data from a JSON file.
