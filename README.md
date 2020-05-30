@@ -2,8 +2,6 @@
 
   ![AUR last modified](https://img.shields.io/aur/last-modified/google-Chrome?color=teal&style=plastic)
 
-  [Screen video](https://drive.google.com/file/d/1ycvUsnqXuQSNyeh_j61bC-jRRQd51HOm/view)
- 
   ## Description:
   This site can be used to write, save, and delete notes. This application uses an express backend and saves/retrieves note data from a JSON file.
 
